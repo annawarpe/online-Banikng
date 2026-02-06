@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard - MyBank</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/userdashboard.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="dashboard-header">
+<div class="logo">MyBank</div>
+<nav>
+<a href="#profile">Profile</a>
+<a href="#" id="logoutBtn">Logout</a>
+</nav>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<a href="#dashboard">Dashboard</a>
+<a href="#accounts">Accounts</a>
+<a href="#transfer">Transfer</a>
+<a href="#transactions">Transactions</a>
+<a href="#profile">Profile</a>
+<a href="#message">message</a>
+<a href="#" href="home.html">Logout</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+<section id="dashboard">
+<h2>Dashboard</h2>
+<p>Welcome, John Doe! Here is your account summary:</p>
+
+<div class="cards">
+<div class="card">
+<h3>Checking Account</h3>
+<p>Balance: $5,250</p>
+</div>
+<div class="card">
+<h3>Savings Account</h3>
+<p>Balance: $12,400</p>
+</div>
+<div class="card">
+<h3>Pending Transfers</h3>
+<p>2 Transactions</p>
+</div>
+</div>
+</section>
+
+
+<!-- ACCOUNTS SECTION -->
+<section id="accounts">
+<h2>Accounts</h2>
+<div class="cards">
+<div class="card">
+<h3>Checking Account</h3>
+<p>Account Number: 1234567890</p>
+<p>Balance: $5,250</p>
+</div>
+<div class="card">
+<h3>Savings Account</h3>
+<p>Account Number: 9876543210</p>
+<p>Balance: $12,400</p>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- TRANSFER SECTION -->
+<section id="transfer">
+    <h2>Bank Transactions</h2>
+
+<div class="txn-box">
+
+
+<div class="txn-card">
+    <h2>Deposite</h2>
+<form action="/customer/transaction" method="post">
+    <input type="number" name="accountNo" placeholder="Account No" required>
+    <input type="text" name="accountType" placeholder="Account Type" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="type" placeholder="Transaction Type" required>
+    <button type="submit">Submit</button>
+</form>
+</div>
+
+
+<div class="txn-card">
+    <h2>Transfer</h2>
+<form action="/customer/transaction" method="post">
+    <input type="number" name="accountNo" placeholder="Account No" required>
+    <input type="text" name="accountType" placeholder="Account Type" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="type" placeholder="Transaction Type" required>
+    <button type="submit">Submit</button>
+</form>
+</div>
+
+
+<div class="txn-card">
+    <h2>withdraw</h2>
+<form action="/customer/transaction" method="post">
+    <input type="number" name="accountNo" placeholder="Account No" required>
+    <input type="text" name="accountType" placeholder="Account Type" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="type" placeholder="Transaction Type" required>
+    <button type="submit">Submit</button>
+</form>
+</div>
+</div>
+
+
+</section>
+
+<!-- TRANSACTIONS SECTION -->
+<section id="transactions">
+<h2>Recent Transactions</h2>
+
+<h3>Recent Transactions</h3>
+
+<table border="1" width="100%">
+    <tr>
+        <th>Account No</th>
+        <th>Account Type</th>
+        <th>Amount</th>
+        <th>Transaction Type</th>
+        <th>Date</th>
+    </tr>
+
+    <tbody>
+<tr>
+    <td>9087123456</td>
+    <td>current</td>
+    <td>10000</td>
+    <td>deposite</td>
+    <td>10-mar-2025</td>
+</tr>
+<tr>
+    <td>9087123456</td>
+    <td>saving</td>
+    <td>20000</td>
+    <td>Transfer</td>
+    <td>10-feb-2026</td>
+</tr>
+<tr>
+    <td>9087123456</td>
+    <td>current</td>
+    <td>300000</td>
+    <td>withdraw</td>
+    <td>15-jan-2026</td>
+</tr>
+</tbody>
+
+</table>
+
+
+</section>
+
+<section id="profile">
+<h2>Profile</h2>
+<div style="max-width:400px;">
+<input type="text" value="Admin User"  readonly>
+<input type="email" value="ad@mybank.com"  readonly>
+<input type="tel" value="9876543210"  readony>
+<input type="text" value="Pune, maharstra"  readonly>
+<!-- <button>Update Profile</button> -->
+</div>
+</section>
+
+<section id="message">
+
+<h2>User Dashboard</h2>
+
+<div class="chat-container">
+    <h3>Message Admin</h3>
+
+    <div id="chatBox" class="chat-box"></div>
+
+    <input type="text" id="messageInput" placeholder="Type message...">
+
+    <button onclick="sendMessage()">Send</button>
+
+
+</div>
+
+
+
+</div>
+<script src="js/app.js"></script>
+<script src="transfer.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/message.js"></script>
+<h2>Welcome <span id="uname"></span></h2>
+
+<script>
+document.getElementById("uname").innerText =
+localStorage.getItem("username");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard - MyBank</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/userdashboard.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="dashboard-header">
+<div class="logo">MyBank</div>
+<nav>
+<a href="#profile">Profile</a>
+<a href="#" id="logoutBtn">Logout</a>
+</nav>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<a href="#dashboard">Dashboard</a>
+<a href="#accounts">Accounts</a>
+<a href="#transfer">Transfer</a>
+<a href="#transactions">Transactions</a>
+<a href="#profile">Profile</a>
+<a href="#message">message</a>
+<a href="#" href="home.html">Logout</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+<section id="dashboard">
+<h2>Dashboard</h2>
+<p>Welcome, John Doe! Here is your account summary:</p>
+
+<div class="cards">
+<div class="card">
+<h3>Checking Account</h3>
+<p>Balance: $5,250</p>
+</div>
+<div class="card">
+<h3>Savings Account</h3>
+<p>Balance: $12,400</p>
+</div>
+<div class="card">
+<h3>Pending Transfers</h3>
+<p>2 Transactions</p>
+</div>
+</div>
+</section>
+
+
+<!-- ACCOUNTS SECTION -->
+<section id="accounts">
+<h2>Accounts</h2>
+<div class="cards">
+<div class="card">
+<h3>Checking Account</h3>
+<p>Account Number: 1234567890</p>
+<p>Balance: $5,250</p>
+</div>
+<div class="card">
+<h3>Savings Account</h3>
+<p>Account Number: 9876543210</p>
+<p>Balance: $12,400</p>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- TRANSACTIONS SECTION -->
+<section id="transfer">
+<h2>Bank Transactions</h2>
+
+<div class="txn-box">
+
+<!-- DEPOSIT -->
+<!-- <div class="txn-card">
+<h3>Deposit</h3>
+<select required>
+<option value="">To Account</option>
+<option>Checking</option>
+<option>Savings</option>
+</select>
+<input type="number" placeholder="Account No" required>
+<input type="number" placeholder="Amount" required>
+<button>Deposit</button>
+</div> -->
+
+
+
+
+<form action="/customer/transaction" method="post">
+    <input type="number" name="accountNo" placeholder="Account No" required>
+    <input type="text" name="accountType" placeholder="Account Type" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="type" placeholder="Transaction Type" required>
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+<!-- WITHDRAW -->
+<div class="txn-card">
+<h3>Withdraw</h3>
+<select required>
+<option value="">From Account</option>
+<option>Checking</option>
+<option>Savings</option>
+</select>
+<input type="number" placeholder="Account No" required>
+<input type="number" placeholder="Amount" required>
+<button>Withdraw</button>
+</div>
+
+<!-- TRANSFER -->
+<div class="txn-card">
+<h3>Transfer</h3>
+
+<select required>
+<option value="">From Account</option>
+<option>Checking</option>
+<option>Savings</option>
+</select>
+
+<input type="number" placeholder="To Account No" required>
+<input type="number" placeholder="Amount" required>
+<button>Transfer</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- TRANSACTIONS SECTION -->
+<section id="transactions">
+<h2>Recent Transactions</h2>
+
+<h3>Recent Transactions</h3>
+
+<table border="1" width="100%">
+    <tr>
+        <th>Account No</th>
+        <th>Account Type</th>
+        <th>Amount</th>
+        <th>Transaction Type</th>
+        <th>Date</th>
+    </tr>
+
+    <tbody>
+<tr th:each="t : ${transactions}">
+    <td th:text="${t.transactionId}"></td>
+    <td th:text="${t.accountNo}"></td>
+    <td th:text="${t.accountType}"></td>
+    <td th:text="${t.amount}"></td>
+    <td th:text="${t.transactionType}"></td>
+    <td th:text="${t.txnDate}"></td>
+</tr>
+</tbody>
+
+</table>
+
+</section>
+
+<section id="profile">
+<h2>Profile</h2>
+<div style="max-width:400px;">
+<p>Name: <span th:text="${user.fullName}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Mobile: <span th:text="${user.mobile}"></span></p>
+<p>Address: <span th:text="${user.address}"></span></p>
+
+
+<button>Update Profile</button>
+</div>
+</section>
+
+<section id="message">
+
+<h2>User Dashboard</h2>
+
+<div class="chat-container">
+    <h3>Message Admin</h3>
+
+    <div id="chatBox" class="chat-box"></div>
+
+    <input type="text" id="messageInput" placeholder="Type message...">
+
+    <button onclick="sendMessage()">Send</button>
+
+
+</div>
+
+
+
+</div>
+<script src="js/app.js"></script>
+<script src="transfer.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/message.js"></script>
+<h2>Welcome <span id="uname"></span></h2>
+
+<script>
+document.getElementById("uname").innerText =
+localStorage.getItem("username");
+</script>
+
+</body>
+</html>
